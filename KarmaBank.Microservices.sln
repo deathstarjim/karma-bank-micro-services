@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KarmaBank.User.Service", "src\KarmaBank.User.Service\KarmaBank.User.Service.csproj", "{5D927F0C-15AF-47DE-8405-D40CBDBA7A73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KarmaBank.Organization.Service", "src\KarmaBank.Organization.Service\KarmaBank.Organization.Service.csproj", "{841CD150-530C-4DAB-AB25-D6216D9FDFF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D927F0C-15AF-47DE-8405-D40CBDBA7A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D927F0C-15AF-47DE-8405-D40CBDBA7A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D927F0C-15AF-47DE-8405-D40CBDBA7A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D927F0C-15AF-47DE-8405-D40CBDBA7A73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841CD150-530C-4DAB-AB25-D6216D9FDFF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841CD150-530C-4DAB-AB25-D6216D9FDFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841CD150-530C-4DAB-AB25-D6216D9FDFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841CD150-530C-4DAB-AB25-D6216D9FDFF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9F200E6-EDF3-4279-8A97-A348CC236F50}
+	EndGlobalSection
+EndGlobal
