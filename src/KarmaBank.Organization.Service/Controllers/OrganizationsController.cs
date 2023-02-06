@@ -13,20 +13,22 @@ namespace KarmaBank.Organization.Service.Controllers
             new OrganizationDto(Guid.NewGuid(), "John Wick Solutions")
         };
 
+        //GET /organizations/
         [HttpGet]
         public IEnumerable<OrganizationDto> Get()
         {
             return _organizations;
         }
 
-        //Get organizations/12345
+        //GET /organizations/12345
         [HttpGet("{id}")]
         public OrganizationDto GetById(Guid id)
         {
             var org = _organizations.FirstOrDefault(org => org.Id == id);
             return org;
         }
-
+        
+        //POST /organizations/
         [HttpPost]
         public ActionResult Post(CreateOrganizationDto createOrganizationDto)
         {
@@ -34,7 +36,8 @@ namespace KarmaBank.Organization.Service.Controllers
             _organizations.Add(org);
             return CreatedAtAction(nameof(GetById), new { id = org.Id }, org);
         }
-
+        
+        //PUT /organizations/{id}
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, UpdateOrganizationDto updateOrganizationDto)
         {
@@ -50,6 +53,17 @@ namespace KarmaBank.Organization.Service.Controllers
 
             return NoContent();
 
+        }
+
+        //DELETE /organizations/{id}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            var index = _organizations.FindIndex(org => org.Id == id);
+
+            _organizations.RemoveAt(index);
+
+            return NoContent();
         }
     }
 }
