@@ -21,12 +21,35 @@ namespace KarmaBank.Organization.Service.Controllers
 
         //Get organizations/12345
         [HttpGet("{id}")]
-        public OrganizationDto Get(Guid id)
+        public OrganizationDto GetById(Guid id)
         {
             var org = _organizations.FirstOrDefault(org => org.Id == id);
             return org;
         }
 
+        [HttpPost]
+        public ActionResult Post(CreateOrganizationDto createOrganizationDto)
+        {
+            var org = new OrganizationDto(Guid.NewGuid(), createOrganizationDto.Name);
+            _organizations.Add(org);
+            return CreatedAtAction(nameof(GetById), new { id = org.Id }, org);
+        }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, UpdateOrganizationDto updateOrganizationDto)
+        {
+            var org = _organizations.FirstOrDefault(org => org.Id == id);
+
+            var updatedOrg = org with
+            {
+                Name = updateOrganizationDto.Name
+            };
+
+            var index = _organizations.FindIndex(org => org.Id == id);
+            _organizations[index] = updatedOrg;
+
+            return NoContent();
+
+        }
     }
 }
