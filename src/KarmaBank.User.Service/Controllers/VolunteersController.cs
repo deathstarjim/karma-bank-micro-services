@@ -20,11 +20,14 @@ namespace KarmaBank.User.Service.Controllers
             return _volunteers;
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        public VolunteerDto GetById(Guid id)
+        [HttpGet("{id}")]
+        public ActionResult<VolunteerDto> GetById(Guid id)
         {
             var volunteer = _volunteers.Where(vol => vol.Id == id).FirstOrDefault();
+
+            if(volunteer== null)
+                return NotFound();
+
             return volunteer;
         }
 
@@ -38,10 +41,13 @@ namespace KarmaBank.User.Service.Controllers
         }
 
         //PUT /volunteers/{id}
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Put(Guid Id, UpdateVolunteerDto updateVolunteerDto)
         {
             var volunteer = _volunteers.FirstOrDefault(vol => vol.Id == Id);
+
+            if (volunteer == null)
+                return NotFound();
 
             var updateVolunteer = volunteer with
             {
@@ -56,10 +62,14 @@ namespace KarmaBank.User.Service.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        //DELETE /volunteers/id
+        [HttpDelete("{id}")]
         public IActionResult Delete(Guid Id)
         {
             var index = _volunteers.FindIndex(vol => vol.Id == Id);
+
+            if(index > 0)
+                return NotFound();
 
             _volunteers.RemoveAt(index);
 

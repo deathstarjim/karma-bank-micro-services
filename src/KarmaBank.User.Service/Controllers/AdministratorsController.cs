@@ -20,7 +20,64 @@ namespace KarmaBank.User.Service.Controllers
             return _administrators;
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<AdministratorDto> GetById(Guid id)
+        {
+            var admin = _administrators.Where(admin => admin.Id == id).FirstOrDefault();
 
+            if(admin == null)
+                return NotFound();
+
+            return admin;
+        }
+
+        //POST /volunteers/
+        [HttpPost]
+        public ActionResult Put(CreateAdministratorDto createAdministratorDto)
+        {
+            var administrator = new AdministratorDto(Guid.NewGuid(), Guid.NewGuid(), createAdministratorDto.UserName, createAdministratorDto.FullName, 
+                createAdministratorDto.Password, "", createAdministratorDto.Email);
+
+            _administrators.Add(administrator);
+
+            return CreatedAtAction(nameof(GetById), new { id = createAdministratorDto.Id }, createAdministratorDto);
+        }
+
+        //PUT /administrators/{id}
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid Id, UpdateAdministratorDto updateAdministratorDto)
+        {
+            var administrator = _administrators.FirstOrDefault(vol => vol.Id == Id);
+
+            if (administrator == null)
+                return NotFound();
+
+            var updateAdministrator = administrator with
+            {
+                FullName = administrator.FullName,
+                Email = administrator.Email
+            };
+
+            var index = _administrators.FindIndex(vol => vol.Id == Id);
+
+            _administrators[index] = updateAdministrator;
+
+            return NoContent();
+        }
+
+        //DELETE /administrators/id
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid Id)
+        {
+            var index = _administrators.FindIndex(vol => vol.Id == Id);
+
+            if (index > 0)
+                return NotFound();
+
+            _administrators.RemoveAt(index);
+
+            return NoContent();
+        }
 
     }
 }
